@@ -20,11 +20,8 @@
 
 import java.math.BigInteger;  // used for very large number evaluations
 import java.lang.Integer;  // for 'parseInt'
-import java.util.ArrayList;  // for resizable bigInt array
 
 public class App {
-
-    public static boolean TEST = true;
 
     public static void cPrint(String message) {
         /* C-style print function for easier message output */
@@ -127,7 +124,7 @@ public class App {
         end = System.currentTimeMillis();
         duration = end-start;
         // print the results
-        cPrint("Fibonacci number " + arg1 + ": " + efficientResult);
+        cPrint("Fibonacci number " + arg2 + ": " + efficientResult);
         cPrint("Time duration of efficient algorithm: " + duration + "ms\n");
     }
 
@@ -149,37 +146,24 @@ public class App {
         int arg1 = 0, arg2 = 0;  // used to find n'th fibonacci number for algorithms 1 and 2
 
         // get command-line arguments
-        // not enough commandline arguments
+        // if there's not enough commandline arguments set default args
         if (args.length < 2) {
-            // define the arguments
-            if (TEST) {
-                arg1 = 50;
-                arg2 = 50;
-                cPrint("arg1: " + arg1 + " arg2: " + arg2);
-            }
-            else {
-                cPrint(
-                    "ERROR: Not enough arguments. Two integers are needed (e.g. 156 135). \n" +
-                    "Aborting program. \n"
-                );
-                System.exit(1);
-            }
+            arg1 = 20;
+            arg2 = 20;
         }
-        // too many commandline arguments
+        // too many commandline arguments - abort the program
         else if (args.length > 2) {
             cPrint(
-                "ERROR: Too many arguments. Two integers are needed (e.g. 156 135). \n" +
+                "ERROR: Too many arguments. Two integers are needed (e.g. 15 67). \n" +
                 "Aborting program. \n"
             );
             System.exit(1);
         }
-        // the perfect amount
+        // the perfect amount - parse the strings into intgers
         else {
             try {
                 arg1 = Integer.parseInt(args[0]);
                 arg2 = Integer.parseInt(args[1]);
-
-                if (TEST) {cPrint("Arg1: " + arg1 + " Arg2: " + arg2); }
             }
             catch(Exception e) {
                 cPrint("ERROR: Couldn't parse commandline arguments. \n" + "Aborting program. \n");
